@@ -4,17 +4,14 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Button
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.codenova.mindmate.ui.theme.MindMateTheme
+import com.codenova.mindmate.ui.view.OnboardingPage
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -37,43 +34,7 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Column {
-        Text(
-            text = "Hello $name!",
-            style = MaterialTheme.typography.bodyLarge,
-            modifier = modifier
-        )
-        Button(onClick = {}) {
-            Text(text = "Login",
-                style = MaterialTheme.typography.bodyMedium)
-        }
-        Text(
-            text = "Hello $name!",
-            style = MaterialTheme.typography.bodyLarge,
-            modifier = modifier
-        )
-        Text(
-            text = "Hello $name!",
-            style = MaterialTheme.typography.bodyMedium,
-            modifier = modifier
-        )
-        Text(
-            text = "Hello $name!",
-            style = MaterialTheme.typography.bodySmall,
-            modifier = modifier
-        )
-
-        Text(
-            text = "Hello $name!",
-            style = MaterialTheme.typography.labelLarge,
-            modifier = modifier
-        )
-        Text(
-            text = "Hello $name!",
-            style = MaterialTheme.typography.labelMedium,
-            modifier = modifier
-        )
-    }
+    OnboardingPage()
 }
 
 @Preview(showBackground = true)
