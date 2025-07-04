@@ -1,10 +1,9 @@
-package com.codenova.mindmate.ui.view.login
+package com.codenova.mindmate.ui.view.journal
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Button
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -14,27 +13,24 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.codenova.mindmate.ui.theme.MindMateTheme
 
 @Composable
-fun LoginPage(onNavigateToBottomNavGraph: () -> Unit) {
-    Scaffold{ innerPadding ->
+fun JournalPage() {
+    Scaffold{innerPadding ->
         Column(
             modifier = Modifier
-                .padding(innerPadding)
-                .fillMaxSize(),
+                .fillMaxSize()
+                .padding(innerPadding),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
-            Text(text = "Login page")
-            Button(onClick = {onNavigateToBottomNavGraph()}) {
-                Text(text = "Go to register page")
-            }
+            Text(text = "Journal page")
         }
     }
 }
 
 @Composable
 @Preview(showBackground = true)
-fun LoginPagePreview() {
+fun JournalPagePreview() {
     MindMateTheme {
-        LoginPage(onNavigateToBottomNavGraph = {})
+        JournalPage()
     }
 }

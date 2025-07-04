@@ -22,7 +22,7 @@ class MainActivity : ComponentActivity() {
                 // nav controller
                 val navController = rememberNavController()
 
-                AppNavigation(navController = navController, startDestination = Screen.Home)
+                AppNavigation(navController = navController, startDestination = Screen.Login)
             }
         }
     }
