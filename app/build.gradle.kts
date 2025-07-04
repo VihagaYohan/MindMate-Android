@@ -71,4 +71,10 @@ dependencies {
     // testing navigation
     implementation(libs.androidx.navigation.testing)
     implementation(libs.kotlinx.serialization.json)
+
+    // adaptive navigation suite
+    implementation(libs.androidx.material3.adaptive.navigation.suite)
+
+    // phosphor icons
+    implementation(libs.phosphor.icon)
 }
