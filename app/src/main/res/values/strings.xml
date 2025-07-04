@@ -11,4 +11,10 @@
     <string name="bottom_journal_destination">Journal</string>
     <string name="bottom_mood_destination">Mood</string>
     <string name="bottom_profile_destination">Profile</string>
+
+    <!--welcome title-->
+    <string name="welcome_title">Welcome!</string>
+
+    <!--notification icon button -->
+    <string name="notification_icon_button">Notifications</string>
 </resources>
