@@ -5,4 +5,10 @@
     <string name="back_button">Back</string>
     <string name="next_button">Next</string>
     <string name="done_button">Done</string>
+
+    <!--bottom app bar destinations-->
+    <string name="bottom_home_destination">Home</string>
+    <string name="bottom_journal_destination">Journal</string>
+    <string name="bottom_mood_destination">Mood</string>
+    <string name="bottom_profile_destination">Profile</string>
 </resources>
