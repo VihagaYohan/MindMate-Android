@@ -1,23 +1,14 @@
 package com.codenova.mindmate.ui.view
 
-import android.R.attr.contentDescription
-import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBarItemDefaults
-import androidx.compose.material3.NavigationRailItemColors
 import androidx.compose.material3.NavigationRailItemDefaults
 import androidx.compose.material3.Text
-import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
-import androidx.compose.material3.adaptive.navigationsuite.NavigationSuiteColors
 import androidx.compose.material3.adaptive.navigationsuite.NavigationSuiteDefaults
 import androidx.compose.material3.adaptive.navigationsuite.NavigationSuiteScaffold
 import androidx.compose.runtime.Composable
@@ -30,8 +21,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
-import androidx.window.core.layout.WindowSizeClass
 import com.codenova.mindmate.navigation.BottomAppBarDestinations
 import com.codenova.mindmate.ui.theme.MindMateTheme
 import com.codenova.mindmate.ui.theme.SMALL_PADDING
@@ -64,14 +53,15 @@ fun RootPage() {
             BottomAppBarDestinations.entries.forEach { it ->
                 item(
                     icon = {
-                        if(it == currentDestination) {
+                        if (it == currentDestination) {
                             Row(
                                 verticalAlignment = Alignment.CenterVertically,
                                 horizontalArrangement = Arrangement.Center
                             ) {
                                 Icon(
                                     imageVector = it.filledIcon,
-                                    contentDescription = stringResource(id = it.contentDescription))
+                                    contentDescription = stringResource(id = it.contentDescription)
+                                )
 
                                 Spacer(
                                     modifier = Modifier.width(width = SMALL_PADDING)
@@ -86,7 +76,8 @@ fun RootPage() {
                         } else {
                             Icon(
                                 imageVector = it.thinIcon,
-                                contentDescription = stringResource(id = it.contentDescription))
+                                contentDescription = stringResource(id = it.contentDescription)
+                            )
                         }
                     },
                     selected = it == currentDestination,
@@ -105,12 +96,13 @@ fun RootPage() {
         )
     ) {
         // destination content
-        when(currentDestination) {
+        when (currentDestination) {
             BottomAppBarDestinations.Home -> HomePage(
-                onNavigateToProfile =  {
+                onNavigateToProfile = {
 
                 }
             )
+
             BottomAppBarDestinations.Journal -> JournalPage()
             BottomAppBarDestinations.Mood -> MoodPage()
             BottomAppBarDestinations.Profile -> ProfilePage(
@@ -125,7 +117,7 @@ fun RootPage() {
 @Composable
 @Preview(showBackground = true)
 fun RootPagePreview() {
-    MindMateTheme { 
+    MindMateTheme {
         RootPage()
     }
 }
