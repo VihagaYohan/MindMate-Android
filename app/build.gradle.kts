@@ -77,4 +77,7 @@ dependencies {
 
     // phosphor icons
     implementation(libs.phosphor.icon)
+
+    // graphics-shapes
+    implementation(libs.androidx.graphics.shapes)
 }

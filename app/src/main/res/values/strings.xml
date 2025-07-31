@@ -17,4 +17,10 @@
 
     <!--notification icon button -->
     <string name="notification_icon_button">Notifications</string>
+
+    <!--home page title card-->
+    <string name="home_page_card_title">Track Your\nMental Health,\nTransform Your\nLife!</string>
+
+    <!--start assessment-->
+    <string name="home_page_card_start_assessment">Start Assessment</string>
 </resources>
