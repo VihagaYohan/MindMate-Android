@@ -10,6 +10,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.codenova.mindmate.BuildConfig
 import com.codenova.mindmate.ui.theme.MindMateTheme
 
 @Composable
@@ -23,6 +24,7 @@ fun MoodPage() {
             verticalArrangement = Arrangement.Center
         ) {
             Text(text = "Mood page")
+            Text(text = "Build config environment ${BuildConfig.BASE_URL}")
         }
     }
 }
