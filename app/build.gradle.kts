@@ -20,6 +20,9 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        // enabling build config features
+        android.buildFeatures.buildConfig = true
     }
 
     buildTypes {
@@ -29,8 +32,46 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+            buildConfigField("String", "BASE_URL", "http://localhost:8081")
+        }
+
+        getByName("debug") {
+            applicationIdSuffix = ".debug"
+            isDebuggable = true
+            buildConfigField("String", "BASE_URL",  "\"http://localhost:8080\"")
+        }
+
+        create("staging") {
+            initWith(getByName("debug"))
+            applicationIdSuffix = ".debugStaging"
+            buildConfigField("String", "BASE_URL", "http://localhost:8082")
+
         }
     }
+
+    // specifies one flavor dimension
+    flavorDimensions += "version"
+
+    productFlavors {
+        create("prod")  {
+            dimension = "version"
+            applicationIdSuffix = ".prod"
+            //buildConfigField("String", "BASE_URL", "http://localhost:8081")
+        }
+
+        create("dev") {
+            dimension = "version"
+            applicationIdSuffix = ".dev"
+            //buildConfigField("String", "BASE_URL", "http://localhost:8080")
+        }
+
+        create("qa") {
+            dimension = "version"
+            applicationIdSuffix = ".staging"
+            //buildConfigField("String", "BASE_URL", "http://localhost:8082")
+        }
+    }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
