@@ -1,14 +1,19 @@
 package com.codenova.mindmate.ui.view.home
 
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -21,8 +26,10 @@ import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.input.nestedscroll.nestedScroll
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -38,7 +45,10 @@ import com.adamglin.phosphoricons.thin.Bell
 import com.codenova.mindmate.ui.theme.MindMateTheme
 import com.codenova.mindmate.ui.theme.SMALL_PADDING
 import com.codenova.mindmate.R
+import com.codenova.mindmate.component.AppButton
 import com.codenova.mindmate.ui.components.Avatar
+import com.codenova.mindmate.ui.theme.LARGE_PADDING
+import com.codenova.mindmate.ui.theme.MEDIUM_PADDING
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -94,20 +104,46 @@ fun HomePage(onNavigateToProfile: () -> Unit) {
     ) { innerPadding ->
         Column(
             modifier = Modifier.padding(innerPadding)
-                .fillMaxSize(),
-            verticalArrangement = Arrangement.Center,
+                .fillMaxSize()
+                .padding(
+                    horizontal = MEDIUM_PADDING,
+                    vertical = LARGE_PADDING + SMALL_PADDING),
+            verticalArrangement = Arrangement.Top,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            LazyColumn(
-                contentPadding = innerPadding,
-                verticalArrangement = Arrangement.spacedBy(8.dp)
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .clip(RoundedCornerShape(8.dp))
+                    .background(MaterialTheme.colorScheme.secondary)
+                    .border(
+                        width = 2.dp,
+                        color = MaterialTheme.colorScheme.onPrimaryContainer,
+                        shape = RoundedCornerShape(8.dp)
+                    )
+                    .padding(all = LARGE_PADDING)
             ) {
-                val list = (0..75).map { it.toString() }
-                items(count = list.size) {
-                    Text(
-                        text = list[it],
-                        style = MaterialTheme.typography.bodyLarge,
-                        modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp)
+                Row {
+                   Column {
+                       Text(
+                           text = stringResource(R.string.home_page_card_title),
+                           style = MaterialTheme.typography.bodyLarge,
+                           fontWeight = FontWeight.ExtraBold,
+                           color = MaterialTheme.colorScheme.onSecondary
+                       )
+
+                       Spacer(modifier = Modifier.height(MEDIUM_PADDING))
+
+                       AppButton(
+                           label = stringResource(id = R.string.home_page_card_start_assessment),
+                           onClick = {},
+                           isPrimary = false
+                       )
+                   }
+
+                    Image(
+                        painter = painterResource(id = R.drawable.meditation),
+                        contentDescription = ""
                     )
                 }
             }
