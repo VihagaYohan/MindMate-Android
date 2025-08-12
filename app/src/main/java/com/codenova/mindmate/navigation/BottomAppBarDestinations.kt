@@ -9,7 +9,11 @@ import androidx.compose.material.icons.filled.Lock
 import androidx.compose.ui.graphics.vector.ImageVector
 import com.adamglin.PhosphorIcons
 import com.adamglin.phosphoricons.Fill
-import com.adamglin.phosphoricons.Thin
+import com.adamglin.phosphoricons.Bold
+import com.adamglin.phosphoricons.bold.House
+import com.adamglin.phosphoricons.bold.NotePencil
+import com.adamglin.phosphoricons.bold.Smiley
+import com.adamglin.phosphoricons.bold.User
 import com.adamglin.phosphoricons.fill.House
 import com.adamglin.phosphoricons.fill.NotePencil
 import com.adamglin.phosphoricons.fill.Smiley
@@ -28,25 +32,25 @@ enum class BottomAppBarDestinations(
 ) {
     Home(
         label = R.string.bottom_home_destination,
-        thinIcon = PhosphorIcons.Thin.House,
+        thinIcon = PhosphorIcons.Bold.House,
         filledIcon = PhosphorIcons.Fill.House,
         contentDescription = R.string.bottom_home_destination
     ),
     Journal(
         label = R.string.bottom_journal_destination,
-        thinIcon = PhosphorIcons.Thin.NotePencil,
+        thinIcon = PhosphorIcons.Bold.NotePencil,
         filledIcon = PhosphorIcons.Fill.NotePencil,
         contentDescription = R.string.bottom_journal_destination
     ),
     Mood(
         label = R.string.bottom_mood_destination,
-        thinIcon = PhosphorIcons.Thin.Smiley,
+        thinIcon = PhosphorIcons.Bold.Smiley,
         filledIcon = PhosphorIcons.Fill.Smiley,
         contentDescription = R.string.bottom_mood_destination
     ),
     Profile(
         label = R.string.bottom_profile_destination,
-        thinIcon = PhosphorIcons.Thin.User,
+        thinIcon = PhosphorIcons.Bold.User,
         filledIcon = PhosphorIcons.Fill.User,
         contentDescription = R.string.bottom_profile_destination
     )

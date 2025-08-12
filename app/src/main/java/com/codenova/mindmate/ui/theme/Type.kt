@@ -19,6 +19,16 @@ val RobotoFontFamily = FontFamily(
     Font(resId = R.font.roboto_light)
 )
 
+val PoppinsFontFamily = FontFamily(
+    Font(resId = R.font.poppins_regular),
+    Font(resId = R.font.poppins_bold),
+    Font(resId = R.font.poppins_semibold),
+    Font(resId = R.font.poppins_thin),
+    Font(resId = R.font.poppins_italic, style = FontStyle.Italic),
+    Font(resId = R.font.poppins_medium),
+    Font(resId = R.font.roboto_light)
+)
+
 // Set of Material typography styles to start with
 val Typography = Typography(
 /*    bodyLarge = TextStyle(
@@ -29,91 +39,91 @@ val Typography = Typography(
         letterSpacing = 0.5.sp
     ),*/
     displayLarge = TextStyle(
-        fontFamily = RobotoFontFamily,
+        fontFamily = PoppinsFontFamily,
         fontWeight = FontWeight.Bold,
         fontSize = 57.sp
     ), // ✅ Splash title / main branding
 
     displayMedium = TextStyle(
-        fontFamily = RobotoFontFamily,
+        fontFamily = PoppinsFontFamily,
         fontWeight = FontWeight.SemiBold,
         fontSize = 45.sp
     ), // ✅ Major section titles
 
     displaySmall = TextStyle(
-        fontFamily = RobotoFontFamily,
+        fontFamily = PoppinsFontFamily,
         fontWeight = FontWeight.Medium,
         fontSize = 36.sp
     ), // ✅ Onboarding headers / big titles
 
     headlineLarge = TextStyle(
-        fontFamily = RobotoFontFamily,
+        fontFamily = PoppinsFontFamily,
         fontWeight = FontWeight.Medium,
         fontSize = 32.sp
     ), // ✅ Main screen titles
 
     headlineMedium = TextStyle(
-        fontFamily = RobotoFontFamily,
+        fontFamily = PoppinsFontFamily,
         fontWeight = FontWeight.Medium,
         fontSize = 28.sp
     ), // ✅ Card / section headers
 
     headlineSmall = TextStyle(
-        fontFamily = RobotoFontFamily,
+        fontFamily = PoppinsFontFamily,
         fontWeight = FontWeight.Normal,
         fontSize = 24.sp
     ), // ✅ Smaller screen headers
 
     titleLarge = TextStyle(
-        fontFamily = RobotoFontFamily,
+        fontFamily = PoppinsFontFamily,
         fontWeight = FontWeight.Medium,
         fontSize = 22.sp
     ), // ✅ Dialog titles, screen sections
 
     titleMedium = TextStyle(
-        fontFamily = RobotoFontFamily,
+        fontFamily = PoppinsFontFamily,
         fontWeight = FontWeight.SemiBold,
         fontSize = 16.sp
     ), // ✅ Button labels / input labels
 
     titleSmall = TextStyle(
-        fontFamily = RobotoFontFamily,
+        fontFamily = PoppinsFontFamily,
         fontWeight = FontWeight.Medium,
         fontSize = 14.sp
     ), // ✅ Field labels / chip text
 
     bodyLarge = TextStyle(
-        fontFamily = RobotoFontFamily,
+        fontFamily = PoppinsFontFamily,
         fontWeight = FontWeight.Normal,
         fontSize = 16.sp
     ), // ✅ Main body text / paragraphs
 
     bodyMedium = TextStyle(
-        fontFamily = RobotoFontFamily,
+        fontFamily = PoppinsFontFamily,
         fontWeight = FontWeight.Light,
         fontSize = 14.sp
     ), // ✅ Supporting text / form hints
 
     bodySmall = TextStyle(
-        fontFamily = RobotoFontFamily,
+        fontFamily = PoppinsFontFamily,
         fontWeight = FontWeight.Thin,
         fontSize = 12.sp
     ), // ✅ Captions / timestamps
 
     labelLarge = TextStyle(
-        fontFamily = RobotoFontFamily,
+        fontFamily = PoppinsFontFamily,
         fontWeight = FontWeight.Bold,
         fontSize = 14.sp
     ), // ✅ Button and icon labels
 
     labelMedium = TextStyle(
-        fontFamily = RobotoFontFamily,
+        fontFamily = PoppinsFontFamily,
         fontWeight = FontWeight.Medium,
         fontSize = 12.sp
     ), // ✅ Toggle switches, tabs, filters
 
     labelSmall = TextStyle(
-        fontFamily = RobotoFontFamily,
+        fontFamily = PoppinsFontFamily,
         fontWeight = FontWeight.Medium,
         fontSize = 11.sp
     ) // ✅ Helper text, tips, or metadata
