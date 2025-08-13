@@ -1,6 +1,5 @@
-package com.codenova.mindmate.component
+package com.codenova.mindmate.ui.components
 
-import android.R
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
