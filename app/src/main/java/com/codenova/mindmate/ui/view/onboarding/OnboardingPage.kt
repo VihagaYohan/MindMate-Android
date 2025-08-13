@@ -1,4 +1,4 @@
-package com.codenova.mindmate.ui.view
+package com.codenova.mindmate.ui.view.onboarding
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -35,7 +35,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.codenova.mindmate.R
-import com.codenova.mindmate.data.model.Onboarding
+import com.codenova.mindmate.ui.view.onboarding.model.Onboarding
 import com.codenova.mindmate.ui.theme.LARGE_PADDING
 import com.codenova.mindmate.ui.theme.MindMateTheme
 import com.codenova.mindmate.ui.theme.SMALL_PADDING

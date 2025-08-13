@@ -1,4 +1,4 @@
-package com.codenova.mindmate.data.model
+package com.codenova.mindmate.ui.view.onboarding.model
 
 import androidx.annotation.DrawableRes
 
