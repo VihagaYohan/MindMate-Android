@@ -38,7 +38,7 @@ android {
         getByName("debug") {
             applicationIdSuffix = ".debug"
             isDebuggable = true
-            buildConfigField("String", "BASE_URL",  "\"http://localhost:8080\"")
+            buildConfigField("String", "BASE_URL",  "\"http://192.168.1.137:8080\"")
         }
 
         create("staging") {
@@ -107,6 +107,9 @@ dependencies {
     implementation(libs.hilt.android)
     ksp(libs.hilt.android.compiler)
 
+    // hilt and navigation
+    implementation(libs.androidx.hilt.navigation.compose)
+
     // navigation
     implementation(libs.androidx.navigation.compose)
     // testing navigation
@@ -121,4 +124,21 @@ dependencies {
 
     // graphics-shapes
     implementation(libs.androidx.graphics.shapes)
+
+    // retrofit
+    implementation(libs.retrofit)
+
+    // gson converter
+    implementation(libs.converter.gson)
+
+    // gson
+    implementation(libs.gson)
+
+    // room db
+    implementation(libs.androidx.room.runtime)
+    // if this project uses any kotlin sources, use Kotlin Symbol Processing (KSP)
+    ksp(libs.androidx.room.compiler)
+    // kotlin extensions and coroutines support for room
+    implementation(libs.androidx.room.ktx)
+
 }
