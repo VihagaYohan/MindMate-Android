@@ -1,115 +1,111 @@
 package com.codenova.mindmate.ui.view.login
 
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Button
-import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.lifecycle.viewmodel.compose.viewModel
 import com.codenova.mindmate.ui.theme.MindMateTheme
+import com.codenova.mindmate.R
+import com.codenova.mindmate.ui.components.AppTextButton
+import com.codenova.mindmate.ui.theme.LARGE_PADDING
+import com.codenova.mindmate.ui.theme.MEDIUM_PADDING
+import androidx.compose.ui.unit.dp
 
 @Composable
-fun LoginPage(onNavigateToBottomNavGraph: () -> Unit) {
-    val loginViewModel: LoginViewModel = hiltViewModel()
-    val uiState = loginViewModel.uiState.collectAsState()
+fun LoginPage(
+    onNavigateToBottomNavGraph: () -> Unit,
+    viewModel: LoginViewModel = hiltViewModel()
+) {
 
-    var email by remember { mutableStateOf("vihagayohan94@gmail.com") }
-    var password by remember {mutableStateOf("Batman")}
+    val uiState by viewModel.uiState.collectAsState()
 
     Scaffold{ innerPadding ->
         Column(
             modifier = Modifier
                 .padding(innerPadding)
+                .padding(vertical = LARGE_PADDING, horizontal = MEDIUM_PADDING)
                 .fillMaxSize(),
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center
         ) {
-            Text(text = "Login page")
 
-            OutlinedTextField(
-                value = email,
-                onValueChange = {email = it},
-                label = {
-                    Text(text = "Email")
-                },
-                singleLine = true,
-                modifier = Modifier.fillMaxWidth()
+            Text(
+                text = stringResource(id = R.string.login_account),
+                style = MaterialTheme.typography.headlineLarge.copy(
+                    color = MaterialTheme.colorScheme.primary,
+                    fontWeight = FontWeight.Black,
+                    fontSize = 40.sp
+                )
             )
 
-            OutlinedTextField(
-                value = password,
-                onValueChange = {
-                    password = it
-                },
-                label = {
-                    Text(text = "Password")
-                },
-                singleLine = true,
-                visualTransformation = PasswordVisualTransformation(),
-                modifier = Modifier.fillMaxWidth()
+            Text(
+                text = stringResource(id = R.string.welcome_back),
+                style = MaterialTheme.typography.headlineMedium.copy(
+                    color = MaterialTheme.colorScheme.onBackground,
+                    fontWeight = FontWeight.SemiBold,
+                    fontSize = 16.sp
+                )
             )
 
-            Spacer(modifier = Modifier.height(16.dp))
+            Spacer(
+                modifier = Modifier
+                    .height(height = LARGE_PADDING * 4)
+            )
 
-            Button(onClick = {
-                loginViewModel.login(email.trim(), password.trim())
-            }) {
-                if(uiState is LoginUiState.Loading){
-                    CircularProgressIndicator(
-                        modifier = Modifier.padding(20.dp),
-                        color = MaterialTheme.colorScheme.primary,
-                        strokeWidth = 2.dp
-                    )
-            }
-                Text(text = "Login")
+            LoginForm(
+                email = (uiState as? LoginUiState.Editing)?.email ?: "",
+                emailError = (uiState as? LoginUiState.Editing)?.emailError ?: null,
+                password = (uiState as? LoginUiState.Editing)?. password ?: "",
+                passwordError = (uiState as? LoginUiState.Editing)?. passwordError ?: null,
+                onEmailChange = viewModel::onEmailChange,
+                onPasswordChange = viewModel::onPasswordChange,
+                checked = (uiState as? LoginUiState.Editing)?.keepLoggedIn ?: false,
+                onCheckedChange = viewModel::onKeepLoggedInChange,
+                onLoginClick = {}
+            )
+
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth(),
+                horizontalArrangement = Arrangement.Center,
+                verticalAlignment = Alignment.CenterVertically,
+            ) {
+                Text(
+                    text = stringResource(id = R.string.dont_have_an_account),
+                    style = MaterialTheme.typography.bodyMedium
+                )
+
+                AppTextButton(
+                    text = stringResource(id = R.string.create_account),
+                    onClick = {}
+                )
             }
 
-            if(uiState is LoginUiState.Error) {
-                Text(text = (uiState as LoginUiState.Error).message)
-            }
-
-            if(uiState is LoginUiState.Success) {
-                Column {
-                    Text(
-                        text = "${(uiState as LoginUiState.Success).authTokens.accessToken}"
-                    )
-                    Text(
-                        text = "${(uiState as LoginUiState.Success).authTokens.refreshToken}"
-                    )
-                }
-            }
-
-            Button(onClick = {onNavigateToBottomNavGraph()}) {
-                Text(text = "Go to register page")
-            }
         }
     }
 }
-
 @Composable
 @Preview(showBackground = true)
 fun LoginPagePreview() {
     MindMateTheme {
-        LoginPage(onNavigateToBottomNavGraph = {})
+        LoginPage(onNavigateToBottomNavGraph = {},
+            viewModel = hiltViewModel()
+        )
     }
 }
