@@ -28,6 +28,7 @@ import com.codenova.mindmate.ui.theme.MindMateTheme
 import com.codenova.mindmate.ui.theme.SMALL_PADDING
 import com.codenova.mindmate.R
 import com.codenova.mindmate.ui.components.AppButton
+import com.codenova.mindmate.ui.components.AppTextButton
 import com.codenova.mindmate.ui.theme.LARGE_PADDING
 import com.codenova.mindmate.ui.theme.MEDIUM_PADDING
 
@@ -104,13 +105,10 @@ fun LoginForm(
                )
            }
 
-            Text(
-                text = stringResource(id = R.string.forgot_password),
-                style = MaterialTheme.typography.bodyMedium.copy(
-                    color = MaterialTheme.colorScheme.primary,
-                    fontWeight = FontWeight.SemiBold
-                )
-            )
+           AppTextButton(
+               text = stringResource(id = R.string.forgot_password),
+               onClick = {}
+           )
         }
 
         Spacer(
