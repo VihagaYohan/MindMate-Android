@@ -1,4 +1,4 @@
-package com.codenova.mindmate.domain.usecases.login
+package com.codenova.mindmate.domain.usecases.common
 
 import android.util.Patterns
 

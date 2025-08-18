@@ -2,8 +2,8 @@ package com.codenova.mindmate.di
 
 import com.codenova.mindmate.domain.repository.AuthRepository
 import com.codenova.mindmate.domain.usecases.login.LoginUseCase
-import com.codenova.mindmate.domain.usecases.login.ValidateEmail
-import com.codenova.mindmate.domain.usecases.login.ValidatePassword
+import com.codenova.mindmate.domain.usecases.common.ValidateEmail
+import com.codenova.mindmate.domain.usecases.common.ValidatePassword
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

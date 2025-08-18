@@ -69,7 +69,8 @@ fun LoginPage(
                 onEmailChange = viewModel::onEmailChange,
                 onPasswordChange = viewModel::onPasswordChange,
                 checked = (uiState as? LoginUiState.Editing)?.keepLoggedIn ?: false,
-                onCheckedChange = viewModel::onKeepLoggedInChange
+                onCheckedChange = viewModel::onKeepLoggedInChange,
+                onLoginClick = {}
             )
         }
     }

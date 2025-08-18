@@ -40,7 +40,8 @@ fun LoginForm(
     checked: Boolean = false,
     onEmailChange: (String) -> Unit,
     onPasswordChange: (String) -> Unit,
-    onCheckedChange: (Boolean) -> Unit = {}
+    onCheckedChange: (Boolean) -> Unit = {},
+    onLoginClick: () -> Unit = {}
 ) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -119,7 +120,7 @@ fun LoginForm(
 
         AppButton(
             label = stringResource(id = R.string.login_button),
-            onClick = {}
+            onClick = {onLoginClick()}
         )
     }
 }

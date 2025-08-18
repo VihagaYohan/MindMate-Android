@@ -2,14 +2,12 @@ package com.codenova.mindmate.ui.view.login
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import androidx.room.util.copy
 import com.codenova.mindmate.domain.usecases.login.LoginUseCase
-import com.codenova.mindmate.domain.usecases.login.ValidateEmail
-import com.codenova.mindmate.domain.usecases.login.ValidatePassword
+import com.codenova.mindmate.domain.usecases.common.ValidateEmail
+import com.codenova.mindmate.domain.usecases.common.ValidatePassword
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
