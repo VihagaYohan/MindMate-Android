@@ -18,7 +18,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import com.codenova.mindmate.ui.components.AppInputField
 import com.codenova.mindmate.ui.theme.MindMateTheme
 import com.codenova.mindmate.ui.theme.SMALL_PADDING
@@ -41,6 +40,7 @@ fun LoginForm(
         verticalArrangement = Arrangement.Center
     ) {
 
+        // email
         AppInputField(
             value = email,
             placeHolder = stringResource(id = R.string.enter_email_address),
@@ -55,6 +55,7 @@ fun LoginForm(
                 .height(height = SMALL_PADDING)
         )
 
+        // password
         AppInputField(
             value = password,
             placeHolder = stringResource(id = R.string.enter_password),
@@ -64,6 +65,7 @@ fun LoginForm(
             onValueChange = { it -> onPasswordChange(it)}
         )
 
+        // keep logged in and forgot password
         Row(
             modifier = Modifier
                 .fillMaxWidth(),
