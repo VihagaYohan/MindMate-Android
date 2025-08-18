@@ -81,12 +81,14 @@ fun LoginForm(
             trailingIcon = {
                 Icon(
                     imageVector = PhosphorIcons.Thin.Envelope,
-                    contentDescription = null
+                    contentDescription = stringResource(id = R.string.email_field),
+                    tint = if (emailError != null) MaterialTheme.colorScheme.error
+                    else MaterialTheme.colorScheme.onBackground
                 )
             },
             keyboardOptions = KeyboardOptions(
                 keyboardType = KeyboardType.Email,
-                imeAction = ImeAction.Next
+                imeAction = ImeAction.Next,
             ),
         )
 
@@ -106,7 +108,9 @@ fun LoginForm(
             trailingIcon = {
                 Icon(
                     imageVector = if (passwordVisible) PhosphorIcons.Thin.Eye else PhosphorIcons.Thin.EyeSlash,
-                    contentDescription = ""
+                    contentDescription = stringResource(id = R.string.password_field),
+                    tint = if (passwordError != null) MaterialTheme.colorScheme.error
+                    else MaterialTheme.colorScheme.onBackground
                 )
             },
             onTrailingIconClick = {
