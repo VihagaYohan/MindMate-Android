@@ -23,4 +23,18 @@
 
     <!--start assessment-->
     <string name="home_page_card_start_assessment">Start Assessment</string>
+
+    <!--login page-->
+    <string name="login_account">Login Account</string>
+    <string name="welcome_back">Welcome Back!</string>
+    <string name="forgot_password">Forgot password?</string>
+    <string name="keep_me_logged_in">Keep me logged in</string>
+    <string name="email_address">Email Address</string>
+    <string name="password">Password</string>
+    <string name="enter_email_address">Enter email address</string>
+    <string name="enter_password">Enter password</string>
+    <string name="login_button">Login</string>
+    <string name="dont_have_an_account">Don\'t have an account?</string>
+    <string name="create_account">Create Account</string>
+
 </resources>
