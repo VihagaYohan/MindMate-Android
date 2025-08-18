@@ -1,10 +1,15 @@
 package com.codenova.mindmate.ui.components
 
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import com.codenova.mindmate.ui.theme.MindMateTheme
 
 @Composable
@@ -18,6 +23,8 @@ fun AppInputField(
 ) {
 
     OutlinedTextField(
+        modifier = Modifier
+            .fillMaxWidth(),
         value = value,
         onValueChange = { it -> onValueChange(it) },
         label = { Text(text = label) },
@@ -32,7 +39,8 @@ fun AppInputField(
                     )
                 )
             }
-        }
+        },
+        shape = RoundedCornerShape(15.dp)
     )
 
 }
