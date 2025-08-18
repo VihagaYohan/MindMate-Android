@@ -36,7 +36,7 @@ class LoginViewModel @Inject constructor(
         val editingState = (_uiState.value as? LoginUiState.Editing)?.copy()?: LoginUiState.Editing()
         _uiState.value = editingState.copy(
             password = password,
-            emailError = passwordResult.errorMessage
+            passwordError = passwordResult.errorMessage
         )
     }
 
