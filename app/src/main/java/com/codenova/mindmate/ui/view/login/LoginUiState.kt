@@ -6,7 +6,6 @@ sealed class LoginUiState {
     object Idel: LoginUiState()
     object Loading: LoginUiState()
 
-    object LoggedIn: LoginUiState()
     data class Success(val authTokens: AuthTokens): LoginUiState()
     data class Error(val message: String): LoginUiState()
 
@@ -14,6 +13,7 @@ sealed class LoginUiState {
         val email: String = "",
         val password: String = "",
         val emailError: String? = null,
-        val passwordError: String? = null
+        val passwordError: String? = null,
+        val keepLoggedIn: Boolean = false
     ): LoginUiState()
 }

@@ -3,6 +3,7 @@ package com.codenova.mindmate.ui.components
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
@@ -24,29 +25,37 @@ fun AppButton(
     isPrimary: Boolean? = true,
     width: Dp? = null
 ) {
-    if(isPrimary == true) {
-        Button(
-            modifier = Modifier
-                .flexibleWidth(width),
-            onClick = onClick) {
-            Text(text = label)
-        }
+
+    val colors = if(isPrimary == true && isPrimary != null) {
+        ButtonDefaults.buttonColors(
+            containerColor = MaterialTheme.colorScheme.primary,
+            contentColor = Color.White
+        )
     } else {
-        OutlinedButton(
-            modifier = Modifier
-                .flexibleWidth(width),
-            onClick = onClick,
-            border = BorderStroke(
-                width = 1.dp,
-                color = MaterialTheme.colorScheme.primary
-            ),
-            colors = ButtonDefaults.outlinedButtonColors(
-                containerColor = Color.White
-            )
-        ) {
-            Text(text = label)
-        }
+        ButtonDefaults.outlinedButtonColors(
+            containerColor = Color.White,
+            contentColor = MaterialTheme.colorScheme.primary
+        )
     }
+    val border = if(isPrimary == true && isPrimary != null)  null else BorderStroke(
+        1.dp,
+        MaterialTheme.colorScheme.primary
+    )
+
+    Button(
+        modifier = Modifier
+            .flexibleWidth(width),
+        onClick = onClick,
+        border = border,
+        colors = colors,
+        shape = RoundedCornerShape(10.dp)
+    ) {
+        Text(
+            text = label,
+            style = MaterialTheme.typography.labelLarge
+        )
+    }
+
 }
 
 @Composable

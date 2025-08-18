@@ -1,28 +1,35 @@
 package com.codenova.mindmate.ui.view.login
 
-import android.R.attr.checked
-import android.widget.CheckBox
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Checkbox
+import androidx.compose.material3.CheckboxColors
+import androidx.compose.material3.CheckboxDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import com.codenova.mindmate.ui.components.AppInputField
 import com.codenova.mindmate.ui.theme.MindMateTheme
 import com.codenova.mindmate.ui.theme.SMALL_PADDING
 import com.codenova.mindmate.R
 import com.codenova.mindmate.ui.components.AppButton
+import com.codenova.mindmate.ui.theme.LARGE_PADDING
+import com.codenova.mindmate.ui.theme.MEDIUM_PADDING
 
 @Composable
 fun LoginForm(
@@ -30,9 +37,9 @@ fun LoginForm(
     emailError: String?,
     password: String,
     passwordError: String?,
+    checked: Boolean = false,
     onEmailChange: (String) -> Unit,
     onPasswordChange: (String) -> Unit,
-    checked: Boolean = false,
     onCheckedChange: (Boolean) -> Unit = {}
 ) {
     Column(
@@ -74,12 +81,21 @@ fun LoginForm(
         ) {
            Row(
                verticalAlignment = Alignment.CenterVertically,
-               horizontalArrangement = Arrangement.Start
+               horizontalArrangement = Arrangement.spacedBy(MEDIUM_PADDING)
            ) {
-               Checkbox(
-                   checked = checked,
-                   onCheckedChange = {it -> onCheckedChange(it)}
-               )
+               Box(
+                   modifier = Modifier
+                       .size(20.dp)
+                       .clip(RoundedCornerShape(4.dp))
+               ) {
+                   Checkbox(
+                       checked = checked,
+                       onCheckedChange = {it -> onCheckedChange(it)},
+                       colors = CheckboxDefaults.colors(
+                           uncheckedColor = MaterialTheme.colorScheme.primary,
+                       )
+                   )
+               }
 
                Text(
                    text = stringResource(id = R.string.keep_me_logged_in),
@@ -95,6 +111,11 @@ fun LoginForm(
                 )
             )
         }
+
+        Spacer(
+            modifier = Modifier
+                .height(height = LARGE_PADDING * 2)
+        )
 
         AppButton(
             label = stringResource(id = R.string.login_button),

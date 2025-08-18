@@ -40,7 +40,7 @@ fun AppInputField(
                 )
             }
         },
-        shape = RoundedCornerShape(15.dp)
+        shape = RoundedCornerShape(10.dp)
     )
 
 }

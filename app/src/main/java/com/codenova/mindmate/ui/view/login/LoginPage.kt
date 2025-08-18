@@ -1,6 +1,5 @@
 package com.codenova.mindmate.ui.view.login
 
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -12,12 +11,10 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.codenova.mindmate.ui.theme.MindMateTheme
@@ -70,7 +67,9 @@ fun LoginPage(
                 password = (uiState as? LoginUiState.Editing)?. password ?: "",
                 passwordError = (uiState as? LoginUiState.Editing)?. passwordError ?: null,
                 onEmailChange = viewModel::onEmailChange,
-                onPasswordChange = viewModel::onPasswordChange
+                onPasswordChange = viewModel::onPasswordChange,
+                checked = (uiState as? LoginUiState.Editing)?.keepLoggedIn ?: false,
+                onCheckedChange = viewModel::onKeepLoggedInChange
             )
         }
     }

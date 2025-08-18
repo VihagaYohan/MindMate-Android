@@ -43,8 +43,9 @@ class LoginViewModel @Inject constructor(
     }
 
     fun onKeepLoggedInChange(checked: Boolean) {
-        _uiState.value = _uiState.value.copy(
-            checked = checked
+        val editingState = (_uiState.value as? LoginUiState.Editing)?.copy()?: LoginUiState.Editing()
+        _uiState.value = editingState.copy(
+            keepLoggedIn = checked
         )
     }
 
