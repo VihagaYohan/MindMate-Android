@@ -27,8 +27,18 @@ fun AppInputField(
             .fillMaxWidth(),
         value = value,
         onValueChange = { it -> onValueChange(it) },
-        label = { Text(text = label) },
-        placeholder = { Text(text = placeHolder) },
+        label = {
+            Text(
+                text = label,
+                style = MaterialTheme.typography.labelMedium
+            )
+        },
+        placeholder = {
+            Text(
+                text = placeHolder,
+                style = MaterialTheme.typography.labelMedium
+            )
+        },
         isError = isError(),
         supportingText = {
             if (isError() && errorMessage != null) {
@@ -54,7 +64,7 @@ fun AppInputFieldPreview() {
             placeHolder = "Enter something here",
             label = "Field label",
             onValueChange = {},
-            isError = {true},
+            isError = { true },
             errorMessage = "error"
         )
     }
