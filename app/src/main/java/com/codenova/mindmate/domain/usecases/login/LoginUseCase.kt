@@ -1,4 +1,4 @@
-package com.codenova.mindmate.domain.usecases
+package com.codenova.mindmate.domain.usecases.login
 
 import com.codenova.mindmate.domain.mapper.AuthMapper
 import com.codenova.mindmate.domain.model.AuthTokens

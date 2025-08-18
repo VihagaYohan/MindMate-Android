@@ -141,4 +141,6 @@ dependencies {
     // kotlin extensions and coroutines support for room
     implementation(libs.androidx.room.ktx)
 
+    implementation(libs.androidx.compose.bom.v20250500)
+
 }
