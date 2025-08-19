@@ -38,5 +38,7 @@
     <string name="create_account">Create Account</string>
     <string name="email_field">Email field</string>
     <string name="password_field">Password field</string>
+    <string name="logging_in">Logging in...</string>
+    <string name="verifying_credentials">We\'re verifying your credentials</string>
 
 </resources>

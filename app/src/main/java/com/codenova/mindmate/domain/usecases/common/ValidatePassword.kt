@@ -11,19 +11,19 @@ class ValidatePassword {
             )
         }
 
-        if(password.length < 8) {
+        if(password.length <= 5) {
             return ValidationResult(
                 successful = false,
-                errorMessage = "Password should be at least 8 characters"
+                errorMessage = "Password should be at least 5 characters"
             )
         }
 
-        if(!containsLetterAndDigits) {
+        /*if(!containsLetterAndDigits) {
             return ValidationResult(
                 successful = false,
                 errorMessage = "Password should contain at least one letter and digit"
             )
-        }
+        }*/
 
         return ValidationResult(
             successful = true,

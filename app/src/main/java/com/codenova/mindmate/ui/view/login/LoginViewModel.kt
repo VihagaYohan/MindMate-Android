@@ -2,9 +2,9 @@ package com.codenova.mindmate.ui.view.login
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.codenova.mindmate.domain.usecases.login.LoginUseCase
 import com.codenova.mindmate.domain.usecases.common.ValidateEmail
 import com.codenova.mindmate.domain.usecases.common.ValidatePassword
+import com.codenova.mindmate.domain.usecases.login.LoginUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -48,10 +48,19 @@ class LoginViewModel @Inject constructor(
     }
 
 
-    fun login(email: String, password: String) {
+    fun login() {
+        val email = (_uiState.value as? LoginUiState.Editing)?.email ?: "vihagayohan94@gmail.com"
+        val password = (_uiState.value as? LoginUiState.Editing)?.password ?: "Batman"
+
+        if(email.isBlank() || password.isBlank()) {
+            onEmailChange(email)
+            onPasswordChange(password)
+            return
+        }
+
         viewModelScope.launch {
             _uiState.value = LoginUiState.Loading
-            try {
+           try {
                 val authTokens = loginUseCase(email, password)
                 _uiState.value = LoginUiState.Success(authTokens)
             } catch(e: Exception) {
