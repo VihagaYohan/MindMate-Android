@@ -28,6 +28,9 @@ import com.codenova.mindmate.ui.components.AppTextButton
 import com.codenova.mindmate.ui.theme.LARGE_PADDING
 import com.codenova.mindmate.ui.theme.MEDIUM_PADDING
 import androidx.compose.ui.unit.dp
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.setValue
+import com.codenova.mindmate.ui.components.AppLoader
 
 @Composable
 fun LoginPage(
@@ -36,6 +39,7 @@ fun LoginPage(
 ) {
 
     val uiState by viewModel.uiState.collectAsState()
+
 
     Scaffold{ innerPadding ->
         Column(
@@ -77,7 +81,7 @@ fun LoginPage(
                 onPasswordChange = viewModel::onPasswordChange,
                 checked = (uiState as? LoginUiState.Editing)?.keepLoggedIn ?: false,
                 onCheckedChange = viewModel::onKeepLoggedInChange,
-                onLoginClick = {}
+                onLoginClick = { viewModel.login()}
             )
 
             Row(
@@ -93,11 +97,18 @@ fun LoginPage(
 
                 AppTextButton(
                     text = stringResource(id = R.string.create_account),
-                    onClick = {}
+                    onClick = { viewModel.login()}
                 )
             }
-
         }
+    }
+
+    if(uiState is LoginUiState.Loading) {
+        AppLoader(
+            isLoading = uiState is LoginUiState.Loading,
+            title = stringResource(id = R.string.logging_in),
+            message = stringResource(id = R.string.verifying_credentials)
+        )
     }
 }
 @Composable

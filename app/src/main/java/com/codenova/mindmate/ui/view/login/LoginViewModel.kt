@@ -6,9 +6,11 @@ import com.codenova.mindmate.domain.usecases.login.LoginUseCase
 import com.codenova.mindmate.domain.usecases.common.ValidateEmail
 import com.codenova.mindmate.domain.usecases.common.ValidatePassword
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 import javax.inject.Inject
 
 @HiltViewModel
@@ -48,15 +50,23 @@ class LoginViewModel @Inject constructor(
     }
 
 
-    fun login(email: String, password: String) {
+    /* fun login(email: String, password: String) {
         viewModelScope.launch {
             _uiState.value = LoginUiState.Loading
-            try {
+           try {
                 val authTokens = loginUseCase(email, password)
                 _uiState.value = LoginUiState.Success(authTokens)
             } catch(e: Exception) {
                 _uiState.value = LoginUiState.Error(e.message ?: "Unknown error")
             }
+        }
+    }*/
+
+    fun login()  {
+        viewModelScope.launch {
+            _uiState.value = LoginUiState.Loading
+            delay(5000)
+            _uiState.value = LoginUiState.Idel
         }
     }
 }
