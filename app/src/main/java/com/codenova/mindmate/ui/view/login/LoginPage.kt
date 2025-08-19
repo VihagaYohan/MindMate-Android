@@ -1,6 +1,5 @@
 package com.codenova.mindmate.ui.view.login
 
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -22,12 +21,12 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.codenova.mindmate.ui.theme.MindMateTheme
 import com.codenova.mindmate.R
+import com.codenova.mindmate.ui.components.AppLoader
 import com.codenova.mindmate.ui.components.AppTextButton
 import com.codenova.mindmate.ui.theme.LARGE_PADDING
 import com.codenova.mindmate.ui.theme.MEDIUM_PADDING
-import androidx.compose.ui.unit.dp
+import com.codenova.mindmate.ui.theme.MindMateTheme
 
 @Composable
 fun LoginPage(
@@ -36,6 +35,7 @@ fun LoginPage(
 ) {
 
     val uiState by viewModel.uiState.collectAsState()
+
 
     Scaffold{ innerPadding ->
         Column(
@@ -69,15 +69,15 @@ fun LoginPage(
             )
 
             LoginForm(
-                email = (uiState as? LoginUiState.Editing)?.email ?: "",
+                email = (uiState as? LoginUiState.Editing)?.email ?: "vihagayohan94@gmail.com",
                 emailError = (uiState as? LoginUiState.Editing)?.emailError ?: null,
-                password = (uiState as? LoginUiState.Editing)?. password ?: "",
+                password = (uiState as? LoginUiState.Editing)?. password ?: "Batman",
                 passwordError = (uiState as? LoginUiState.Editing)?. passwordError ?: null,
                 onEmailChange = viewModel::onEmailChange,
                 onPasswordChange = viewModel::onPasswordChange,
                 checked = (uiState as? LoginUiState.Editing)?.keepLoggedIn ?: false,
                 onCheckedChange = viewModel::onKeepLoggedInChange,
-                onLoginClick = {}
+                onLoginClick = { viewModel.login()}
             )
 
             Row(
@@ -93,11 +93,18 @@ fun LoginPage(
 
                 AppTextButton(
                     text = stringResource(id = R.string.create_account),
-                    onClick = {}
+                    onClick = { }
                 )
             }
-
         }
+    }
+
+    if(uiState is LoginUiState.Loading) {
+        AppLoader(
+            isLoading = uiState is LoginUiState.Loading,
+            title = stringResource(id = R.string.logging_in),
+            message = stringResource(id = R.string.verifying_credentials)
+        )
     }
 }
 @Composable
