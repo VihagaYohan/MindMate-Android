@@ -36,5 +36,7 @@
     <string name="login_button">Login</string>
     <string name="dont_have_an_account">Don\'t have an account?</string>
     <string name="create_account">Create Account</string>
+    <string name="email_field">Email field</string>
+    <string name="password_field">Password field</string>
 
 </resources>
