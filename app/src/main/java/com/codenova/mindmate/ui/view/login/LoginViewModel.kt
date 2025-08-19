@@ -2,15 +2,13 @@ package com.codenova.mindmate.ui.view.login
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.codenova.mindmate.domain.usecases.login.LoginUseCase
 import com.codenova.mindmate.domain.usecases.common.ValidateEmail
 import com.codenova.mindmate.domain.usecases.common.ValidatePassword
+import com.codenova.mindmate.domain.usecases.login.LoginUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
 import javax.inject.Inject
 
 @HiltViewModel
@@ -50,7 +48,16 @@ class LoginViewModel @Inject constructor(
     }
 
 
-    /* fun login(email: String, password: String) {
+    fun login() {
+        val email = (_uiState.value as? LoginUiState.Editing)?.email ?: "vihagayohan94@gmail.com"
+        val password = (_uiState.value as? LoginUiState.Editing)?.password ?: "Batman"
+
+        if(email.isBlank() || password.isBlank()) {
+            onEmailChange(email)
+            onPasswordChange(password)
+            return
+        }
+
         viewModelScope.launch {
             _uiState.value = LoginUiState.Loading
            try {
@@ -59,14 +66,6 @@ class LoginViewModel @Inject constructor(
             } catch(e: Exception) {
                 _uiState.value = LoginUiState.Error(e.message ?: "Unknown error")
             }
-        }
-    }*/
-
-    fun login()  {
-        viewModelScope.launch {
-            _uiState.value = LoginUiState.Loading
-            delay(5000)
-            _uiState.value = LoginUiState.Idel
         }
     }
 }

@@ -1,5 +1,7 @@
 package com.codenova.mindmate.data.remote.dto
 
+import com.google.gson.annotations.SerializedName
+
 data class LoginResponseDto(
-    val accessToken: String
+    @SerializedName("token") val accessToken: String
 )
