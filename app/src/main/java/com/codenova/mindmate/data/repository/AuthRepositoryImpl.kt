@@ -4,6 +4,7 @@ import com.codenova.mindmate.data.remote.api.AuthApiService
 import com.codenova.mindmate.data.remote.dto.LoginResponseDto
 import com.codenova.mindmate.data.remote.request.LoginRequest
 import com.codenova.mindmate.domain.repository.AuthRepository
+import okhttp3.Cookie
 import javax.inject.Inject
 
 class AuthRepositoryImpl @Inject constructor(
@@ -18,6 +19,13 @@ class AuthRepositoryImpl @Inject constructor(
         }
 
         val body = response.body() ?: throw Exception("Empty response")
-        return LoginResponseDto(accessToken = body.accessToken)
+        val cookie = response.headers()["Set-Cookie"] ?: throw Exception("No cookie found")
+        val refreshToken = cookie
+            ?.split(";")
+            ?.firstOrNull{ it.trim().startsWith("refreshToken=")}
+            ?.substringAfter("=")
+        return LoginResponseDto(
+            accessToken = body.accessToken,
+            refreshToken = refreshToken?:"")
     }
 }

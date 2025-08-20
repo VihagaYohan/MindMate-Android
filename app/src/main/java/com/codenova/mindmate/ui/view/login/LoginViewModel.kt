@@ -49,8 +49,8 @@ class LoginViewModel @Inject constructor(
 
 
     fun login() {
-        val email = (_uiState.value as? LoginUiState.Editing)?.email ?: "vihagayohan94@gmail.com"
-        val password = (_uiState.value as? LoginUiState.Editing)?.password ?: "Batman"
+        val email = (_uiState.value as? LoginUiState.Editing)?.email ?: ""
+        val password = (_uiState.value as? LoginUiState.Editing)?.password ?: ""
 
         if(email.isBlank() || password.isBlank()) {
             onEmailChange(email)
