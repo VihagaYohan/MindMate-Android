@@ -12,6 +12,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
@@ -31,10 +32,17 @@ import com.codenova.mindmate.ui.theme.MindMateTheme
 @Composable
 fun LoginPage(
     onNavigateToBottomNavGraph: () -> Unit,
-    viewModel: LoginViewModel = hiltViewModel()
+    viewModel: LoginViewModel = hiltViewModel(),
 ) {
 
     val uiState by viewModel.uiState.collectAsState()
+
+    // collect navigation event
+    LaunchedEffect(key1 = Unit) {
+        viewModel.navigateHome.collect {
+            onNavigateToBottomNavGraph() // trigger navigation
+        }
+    }
 
 
     Scaffold{ innerPadding ->
@@ -69,9 +77,9 @@ fun LoginPage(
             )
 
             LoginForm(
-                email = (uiState as? LoginUiState.Editing)?.email ?: "vihagayohan94@gmail.com",
+                email = (uiState as? LoginUiState.Editing)?.email ?: "",
                 emailError = (uiState as? LoginUiState.Editing)?.emailError ?: null,
-                password = (uiState as? LoginUiState.Editing)?. password ?: "Batman",
+                password = (uiState as? LoginUiState.Editing)?. password ?: "",
                 passwordError = (uiState as? LoginUiState.Editing)?. passwordError ?: null,
                 onEmailChange = viewModel::onEmailChange,
                 onPasswordChange = viewModel::onPasswordChange,
@@ -93,7 +101,7 @@ fun LoginPage(
 
                 AppTextButton(
                     text = stringResource(id = R.string.create_account),
-                    onClick = { }
+                    onClick = { onNavigateToBottomNavGraph() }
                 )
             }
         }
@@ -112,7 +120,7 @@ fun LoginPage(
 fun LoginPagePreview() {
     MindMateTheme {
         LoginPage(onNavigateToBottomNavGraph = {},
-            viewModel = hiltViewModel()
+            viewModel = hiltViewModel(),
         )
     }
 }
