@@ -2,12 +2,16 @@ package com.codenova.mindmate.ui.view.login
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.codenova.mindmate.domain.model.AuthTokens
+import com.codenova.mindmate.domain.repository.TokenRepository
 import com.codenova.mindmate.domain.usecases.common.ValidateEmail
 import com.codenova.mindmate.domain.usecases.common.ValidatePassword
 import com.codenova.mindmate.domain.usecases.login.LoginUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -15,12 +19,16 @@ import javax.inject.Inject
 class LoginViewModel @Inject constructor(
     private val loginUseCase: LoginUseCase,
     private val validateEmail: ValidateEmail,
-    private val validatePassword: ValidatePassword
+    private val validatePassword: ValidatePassword,
+    private val tokenRepository: TokenRepository
 ): ViewModel() {
 
     // UI state exposed to the UI
     private val _uiState = MutableStateFlow<LoginUiState>(value = LoginUiState.Idel)
     val uiState: StateFlow<LoginUiState> = _uiState
+
+    private val _navigateHome = MutableSharedFlow<Unit>()
+    val navigateHome = _navigateHome.asSharedFlow()
 
     fun onEmailChange(email: String) {
        val emailResult = validateEmail.execute(email = email)
@@ -49,8 +57,8 @@ class LoginViewModel @Inject constructor(
 
 
     fun login() {
-        val email = (_uiState.value as? LoginUiState.Editing)?.email ?: "vihagayohan94@gmail.com"
-        val password = (_uiState.value as? LoginUiState.Editing)?.password ?: "Batman"
+        val email = (_uiState.value as? LoginUiState.Editing)?.email ?: ""
+        val password = (_uiState.value as? LoginUiState.Editing)?.password ?: ""
 
         if(email.isBlank() || password.isBlank()) {
             onEmailChange(email)
@@ -61,10 +69,60 @@ class LoginViewModel @Inject constructor(
         viewModelScope.launch {
             _uiState.value = LoginUiState.Loading
            try {
-                val authTokens = loginUseCase(email, password)
-                _uiState.value = LoginUiState.Success(authTokens)
+                val authTokens: AuthTokens = loginUseCase(email, password)
+               if(authTokens.accessToken.isBlank() || authTokens.refreshToken.isBlank()) {
+                    throw Exception("Invalid credentials")
+               }
+
+               saveTokens(authTokens)
+               _navigateHome.emit(Unit)
+                // _uiState.value = LoginUiState.Success(authTokens)
             } catch(e: Exception) {
                 _uiState.value = LoginUiState.Error(e.message ?: "Unknown error")
+            }
+        }
+    }
+
+    fun saveTokens(authTokens: AuthTokens) {
+        viewModelScope.launch {
+            try {
+                tokenRepository.saveTokens(
+                    accessToken = authTokens.accessToken,
+                    refreshToken = authTokens.refreshToken
+                )
+            }catch(e: Exception) {
+                _uiState.value = LoginUiState.Error(message = e.message ?: "Error at at saving tokens")
+            }
+        }
+    }
+
+    fun loadAccessToken() {
+        viewModelScope.launch {
+            try {
+                val accessToken: String = tokenRepository.getAccessToken() ?: ""
+
+            } catch(e: Exception) {
+                _uiState.value = LoginUiState.Error(message = e.message ?: "Error at loading access token")
+            }
+        }
+    }
+
+    fun loadRefreshToken() {
+        viewModelScope.launch {
+            try {
+                val refreshToken: String = tokenRepository.getRefreshToken() ?: ""
+            } catch(e: Exception) {
+                _uiState.value = LoginUiState.Error(message = e.message ?: "Error at loading refresh token")
+            }
+        }
+    }
+
+    fun clearTokens() {
+        viewModelScope.launch {
+            try {
+                tokenRepository.clearTokens()
+            }catch(e: Exception) {
+                _uiState.value = LoginUiState.Error(message = e.message ?: "Error at clearing tokens")
             }
         }
     }

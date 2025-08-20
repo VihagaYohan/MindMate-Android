@@ -2,6 +2,7 @@
 agp = "8.11.0"
 composeBomVersion = "2025.05.00"
 converterGson = "3.0.0"
+datastorePreferences = "1.1.7"
 graphicsShapes = "1.0.1"
 gson = "2.13.1"
 hiltAndroidCompiler = "2.56.2"
@@ -22,10 +23,12 @@ navigationCompose = "2.9.0"
 navigation3UiAndroid = "1.0.0-alpha05"
 phosphorIcon = "1.0.0"
 roomKtx = "2.7.2"
+identityJvm = "202411.1"
 
 [libraries]
 androidx-compose-bom-v20250500 = { module = "androidx.compose:compose-bom", version.ref = "composeBomVersion" }
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+androidx-datastore-preferences = { module = "androidx.datastore:datastore-preferences", version.ref = "datastorePreferences" }
 androidx-graphics-shapes = { module = "androidx.graphics:graphics-shapes", version.ref = "graphicsShapes" }
 androidx-hilt-navigation-compose = { module = "androidx.hilt:hilt-navigation-compose", version.ref = "hiltNavigationCompose" }
 androidx-material3-adaptive-navigation-suite = { module = "androidx.compose.material3:material3-adaptive-navigation-suite", version.ref = "material3AdaptiveNavigationSuite" }
@@ -55,6 +58,7 @@ androidx-navigation3-ui-android = { group = "androidx.navigation3", name = "navi
 kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinxSerializationJson" }
 phosphor-icon = { module = "com.adamglin:phosphor-icon", version.ref = "phosphorIcon" }
 retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "converterGson" }
+identity-jvm = { group = "com.android.identity", name = "identity-jvm", version.ref = "identityJvm" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

@@ -25,6 +25,12 @@ android {
         android.buildFeatures.buildConfig = true
     }
 
+    packagingOptions {
+        resources {
+            pickFirsts += "META-INF/versions/9/OSGI-INF/MANIFEST.MF"
+        }
+    }
+
     buildTypes {
         release {
             isMinifyEnabled = false
@@ -95,6 +101,7 @@ dependencies {
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
     implementation(libs.androidx.navigation3.ui.android)
+    implementation(libs.identity.jvm)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -142,5 +149,8 @@ dependencies {
     implementation(libs.androidx.room.ktx)
 
     implementation(libs.androidx.compose.bom.v20250500)
+
+    // preferences datastore
+    implementation(libs.androidx.datastore.preferences)
 
 }

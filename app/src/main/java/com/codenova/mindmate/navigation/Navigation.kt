@@ -20,7 +20,9 @@ fun AppNavigation(navController: NavHostController, startDestination: Screen) {
     NavHost(navController = navController, startDestination = startDestination) {
         composable<Screen.Login> {
             LoginPage(onNavigateToBottomNavGraph = {
-                navController.navigate(route = Screen.BottomNavGraph)
+                navController.navigate(route = Screen.BottomNavGraph) {
+                    popUpTo(route = Screen.Login) {inclusive = true}
+                }
             })
         }
         composable<Screen.Home> {

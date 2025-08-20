@@ -14,7 +14,7 @@ fun AppTextButton(
     onClick:() -> Unit
 ) {
     TextButton(
-        onClick = {onClick}
+        onClick = {onClick()}
     ) {
         Text(
             text = text,
