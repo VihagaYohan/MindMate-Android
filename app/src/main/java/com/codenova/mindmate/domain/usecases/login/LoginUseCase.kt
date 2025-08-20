@@ -10,11 +10,7 @@ class LoginUseCase @Inject constructor(
 ) {
     suspend operator fun invoke(email: String, password: String): AuthTokens {
         val loginResponseDto = repository.login(email, password)
-        val refreshToken = "temp_refresh_token"
 
-        return AuthMapper().toAuthTokens(
-            loginResponseDto,
-            refreshToken
-        )
+        return AuthMapper().toAuthTokens(loginResponseDto)
     }
 }

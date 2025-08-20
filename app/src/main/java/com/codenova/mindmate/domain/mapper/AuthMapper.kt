@@ -4,10 +4,10 @@ import com.codenova.mindmate.data.remote.dto.LoginResponseDto
 import com.codenova.mindmate.domain.model.AuthTokens
 
 class AuthMapper {
-    fun toAuthTokens(dto: LoginResponseDto, refreshToken: String): AuthTokens {
+    fun toAuthTokens(dto: LoginResponseDto): AuthTokens {
         return AuthTokens(
             accessToken = dto.accessToken,
-            refreshToken = refreshToken
+            refreshToken = dto.refreshToken
         )
     }
 }
