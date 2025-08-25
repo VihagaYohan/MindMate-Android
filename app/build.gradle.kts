@@ -62,19 +62,19 @@ android {
         create("prod")  {
             dimension = "version"
             applicationIdSuffix = ".prod"
-            //buildConfigField("String", "BASE_URL", "http://localhost:8081")
+            buildConfigField("String", "BASE_URL", "http://localhost:8081")
         }
 
         create("dev") {
             dimension = "version"
             applicationIdSuffix = ".dev"
-            //buildConfigField("String", "BASE_URL", "http://localhost:8080")
+            buildConfigField("String", "BASE_URL",  "\"http://192.168.1.137:8080\"")
         }
 
         create("qa") {
             dimension = "version"
             applicationIdSuffix = ".staging"
-            //buildConfigField("String", "BASE_URL", "http://localhost:8082")
+            buildConfigField("String", "BASE_URL", "http://localhost:8082")
         }
     }
 
@@ -87,6 +87,9 @@ android {
     }
     buildFeatures {
         compose = true
+    }
+    dexOptions {
+        javaMaxHeapSize = "4G"
     }
 }
 
@@ -153,4 +156,7 @@ dependencies {
     // preferences datastore
     implementation(libs.androidx.datastore.preferences)
 
+    // mapstruct
+    implementation(libs.mapstruct)
+    annotationProcessor(libs.mapstruct.processor)
 }
