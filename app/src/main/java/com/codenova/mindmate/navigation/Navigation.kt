@@ -12,6 +12,7 @@ import com.codenova.mindmate.ui.view.journal.JournalPage
 import com.codenova.mindmate.ui.view.login.LoginPage
 import com.codenova.mindmate.ui.view.mood.MoodPage
 import com.codenova.mindmate.ui.view.profile.ProfilePage
+import com.codenova.mindmate.ui.view.register.RegisterPage
 
 @Composable
 fun AppNavigation(navController: NavHostController, startDestination: Screen) {
@@ -21,10 +22,19 @@ fun AppNavigation(navController: NavHostController, startDestination: Screen) {
         composable<Screen.Login> {
             LoginPage(onNavigateToBottomNavGraph = {
                 navController.navigate(route = Screen.BottomNavGraph) {
-                    popUpTo(route = Screen.Login) {inclusive = true}
+                    popUpTo(route = Screen.Login) { inclusive = true }
                 }
+            }, onNavigateToRegister = {
+                navController.navigate(route = Screen.Register)
             })
         }
+
+        composable<Screen.Register> {
+            RegisterPage(onNavigateToBottomNavGraph = {
+                navController.navigate(route = Screen.BottomNavGraph)
+            })
+        }
+
         composable<Screen.Home> {
             HomePage(onNavigateToProfile = {
                 navController.navigate(Screen.Profile(name = "Jane Doe"))

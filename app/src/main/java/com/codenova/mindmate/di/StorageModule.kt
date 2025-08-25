@@ -1,7 +1,7 @@
 package com.codenova.mindmate.di
 
 import android.content.Context
-import com.codenova.mindmate.data.repository.TokenRepositoryImpl
+import com.codenova.mindmate.data.repositoryImpl.TokenRepositoryImpl
 import com.codenova.mindmate.domain.repository.TokenRepository
 import com.codenova.mindmate.framework.local.CryptoManager
 import com.codenova.mindmate.framework.local.TokenStorage

@@ -1,7 +1,8 @@
 package com.codenova.mindmate.di
 
 import com.codenova.mindmate.domain.repository.AuthRepository
-import com.codenova.mindmate.domain.usecases.login.LoginUseCase
+import com.codenova.mindmate.domain.usecases.auth.LoginUseCase
+import com.codenova.mindmate.domain.usecases.auth.RegisterUseCase
 import com.codenova.mindmate.domain.usecases.common.ValidateEmail
 import com.codenova.mindmate.domain.usecases.common.ValidatePassword
 import dagger.Module
@@ -19,6 +20,13 @@ object DomainModule {
         authRepository: AuthRepository
     ): LoginUseCase {
         return LoginUseCase(authRepository)
+    }
+
+    @Provides
+    fun provideRegisterUseCase(
+        authRepository: AuthRepository
+    ): RegisterUseCase {
+        return RegisterUseCase(authRepository)
     }
 
     @Provides

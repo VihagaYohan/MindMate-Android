@@ -6,7 +6,7 @@ import com.codenova.mindmate.domain.model.AuthTokens
 import com.codenova.mindmate.domain.repository.TokenRepository
 import com.codenova.mindmate.domain.usecases.common.ValidateEmail
 import com.codenova.mindmate.domain.usecases.common.ValidatePassword
-import com.codenova.mindmate.domain.usecases.login.LoginUseCase
+import com.codenova.mindmate.domain.usecases.auth.LoginUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -76,7 +76,6 @@ class LoginViewModel @Inject constructor(
 
                saveTokens(authTokens)
                _navigateHome.emit(Unit)
-                // _uiState.value = LoginUiState.Success(authTokens)
             } catch(e: Exception) {
                 _uiState.value = LoginUiState.Error(e.message ?: "Unknown error")
             }
@@ -91,7 +90,7 @@ class LoginViewModel @Inject constructor(
                     refreshToken = authTokens.refreshToken
                 )
             }catch(e: Exception) {
-                _uiState.value = LoginUiState.Error(message = e.message ?: "Error at at saving tokens")
+                _uiState.value = LoginUiState.Error(message = e.message ?: "Error at saving tokens")
             }
         }
     }

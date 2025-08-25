@@ -32,6 +32,7 @@ import com.codenova.mindmate.ui.theme.MindMateTheme
 @Composable
 fun LoginPage(
     onNavigateToBottomNavGraph: () -> Unit,
+    onNavigateToRegister: () -> Unit,
     viewModel: LoginViewModel = hiltViewModel(),
 ) {
 
@@ -45,7 +46,7 @@ fun LoginPage(
     }
 
 
-    Scaffold{ innerPadding ->
+    Scaffold { innerPadding ->
         Column(
             modifier = Modifier
                 .padding(innerPadding)
@@ -79,13 +80,13 @@ fun LoginPage(
             LoginForm(
                 email = (uiState as? LoginUiState.Editing)?.email ?: "",
                 emailError = (uiState as? LoginUiState.Editing)?.emailError ?: null,
-                password = (uiState as? LoginUiState.Editing)?. password ?: "",
-                passwordError = (uiState as? LoginUiState.Editing)?. passwordError ?: null,
+                password = (uiState as? LoginUiState.Editing)?.password ?: "",
+                passwordError = (uiState as? LoginUiState.Editing)?.passwordError ?: null,
                 onEmailChange = viewModel::onEmailChange,
                 onPasswordChange = viewModel::onPasswordChange,
                 checked = (uiState as? LoginUiState.Editing)?.keepLoggedIn ?: false,
                 onCheckedChange = viewModel::onKeepLoggedInChange,
-                onLoginClick = { viewModel.login()}
+                onLoginClick = { viewModel.login() }
             )
 
             Row(
@@ -101,13 +102,13 @@ fun LoginPage(
 
                 AppTextButton(
                     text = stringResource(id = R.string.create_account),
-                    onClick = { onNavigateToBottomNavGraph() }
+                    onClick = { onNavigateToRegister() }
                 )
             }
         }
     }
 
-    if(uiState is LoginUiState.Loading) {
+    if (uiState is LoginUiState.Loading) {
         AppLoader(
             isLoading = uiState is LoginUiState.Loading,
             title = stringResource(id = R.string.logging_in),
@@ -115,11 +116,14 @@ fun LoginPage(
         )
     }
 }
+
 @Composable
 @Preview(showBackground = true)
 fun LoginPagePreview() {
     MindMateTheme {
-        LoginPage(onNavigateToBottomNavGraph = {},
+        LoginPage(
+            onNavigateToBottomNavGraph = {},
+            onNavigateToRegister = {},
             viewModel = hiltViewModel(),
         )
     }
