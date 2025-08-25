@@ -1,4 +1,4 @@
-package com.codenova.mindmate.data.repository
+package com.codenova.mindmate.data.repositoryImpl
 
 import com.codenova.mindmate.domain.repository.TokenRepository
 import com.codenova.mindmate.framework.local.TokenStorage
